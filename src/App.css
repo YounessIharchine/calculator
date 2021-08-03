@@ -74,10 +74,17 @@
 }
 
 .button:hover {
+  margin-top: 1px;
+  margin-left: 1px;
+  border-right-width: 4px;
+  border-bottom-width: 4px;
+}
+
+.button:active:hover {
   margin-top: 3px;
   margin-left: 3px;
-  border-right: 2px solid #d48c70;
-  border-bottom: 2px solid #d48c70;
+  border-right-width: 2px;
+  border-bottom-width: 2px;
 }
 
 .ac {
