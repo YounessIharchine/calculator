@@ -1,5 +1,13 @@
+import { useState, useEffect } from "react";
+
 const Screen = () => {
-  return <div className="screen">0+1*/-.,</div>;
+  const [value, setValue] = useState("");
+
+  useEffect(() => {
+    setValue("1+5");
+  }, [value]);
+
+  return <div className="screen">{value}</div>;
 };
 
 export default Screen;

@@ -28,13 +28,15 @@
 }
 
 .screen {
-  padding: 0 2rem;
+  padding: 0 2.33rem;
 
   font-family: "digital-7.mono";
   font-size: 36px;
 
   border: 1px solid #d48c70;
-  background: linear-gradient(135deg, #fcf5f2, #fadcd9);
+  border-top: 3px solid #d48c70;
+  border-left: 3px solid #d48c70;
+  background: linear-gradient(135deg, #effbea, #e0fadb);
 
   grid-column: span 4;
   grid-row: span 2;
@@ -60,4 +62,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.button:hover {
+  margin-top: 3px;
+  margin-left: 3px;
+  border-right: 2px solid #d48c70;
+  border-bottom: 2px solid #d48c70;
 }

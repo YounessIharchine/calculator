@@ -6,7 +6,13 @@ function App() {
   return (
     <div className="wrapper">
       <Screen />
-      <Button gridColumn={"span 2"} text="AC" /> <Button text="CE" />
+      <Button
+        borderColor="#d57372"
+        backgroundColors={{ darker: "#f96a67", lighter: "#f59580" }}
+        gridColumn={"span 2"}
+        text="AC"
+      />{" "}
+      <Button text="CE" />
       <Button text="/" />
       <Button text="7" /> <Button text="8" /> <Button text="9" />
       <Button text="x" />
