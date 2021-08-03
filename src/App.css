@@ -97,4 +97,6 @@
 .equals {
   border-color: #d59372;
   background: linear-gradient(135deg, #f6cb55, #ffc21a);
+
+  grid-column: span 2;
 }

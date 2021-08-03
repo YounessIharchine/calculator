@@ -23,18 +23,27 @@ function App() {
     });
   };
 
+  const addDigit = (digit) => {
+    setValue((prevValue) => {
+      if (value === "0") return digit;
+      return prevValue + digit;
+    });
+  };
+
   return (
-    <CalculatorContext.Provider value={{ emptyScreen, removeLastChar }}>
+    <CalculatorContext.Provider
+      value={{ emptyScreen, removeLastChar, addDigit }}
+    >
       <div className="wrapper">
         <Screen value={value} />
-        <AC /> <CE /> <Operation text="/" />
-        <Digit text="7" /> <Digit text="8" /> <Digit text="9" />
-        <Operation text="x" />
-        <Digit text="4" /> <Digit text="5" /> <Digit text="6" />
-        <Operation text="-" />
-        <Digit text="1" /> <Digit text="2" /> <Digit text="3" />
-        <Operation text="+" />
-        <Digit text="0" /> <Digit text="." /> <Digit text="ANS" />
+        <AC /> <CE /> <Operation operation="/" />
+        <Digit digit="7" /> <Digit digit="8" /> <Digit digit="9" />
+        <Operation operation="x" />
+        <Digit digit="4" /> <Digit digit="5" /> <Digit digit="6" />
+        <Operation operation="-" />
+        <Digit digit="1" /> <Digit digit="2" /> <Digit digit="3" />
+        <Operation operation="+" />
+        <Digit digit="0" /> <Digit digit="." />
         <Equals />
       </div>
     </CalculatorContext.Provider>
