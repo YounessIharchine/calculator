@@ -79,3 +79,15 @@
   border-right: 2px solid #d48c70;
   border-bottom: 2px solid #d48c70;
 }
+
+.ac {
+  border-color: #d57372;
+  background: linear-gradient(135deg, #f59580, #f96a67);
+
+  grid-column: span 2;
+}
+
+.equals {
+  border-color: #d59372;
+  background: linear-gradient(135deg, #f6cb55, #ffc21a);
+}

@@ -1,7 +1,11 @@
 import "./App.css";
 import { useState, createContext } from "react";
 import Screen from "./elements/screen";
-import Button from "./elements/button";
+import AC from "./elements/ac";
+import CE from "./elements/ce";
+import Operation from "./elements/operation";
+import Digit from "./elements/digit";
+import Equals from "./elements/equals";
 
 const CalculatorContext = createContext();
 
@@ -12,26 +16,15 @@ function App() {
     <CalculatorContext.Provider value={{}}>
       <div className="wrapper">
         <Screen value={value} />
-        <Button
-          borderColor="#d57372"
-          backgroundColors={{ darker: "#f96a67", lighter: "#f59580" }}
-          gridColumn={"span 2"}
-          text="AC"
-        />{" "}
-        <Button text="CE" />
-        <Button text="/" />
-        <Button text="7" /> <Button text="8" /> <Button text="9" />
-        <Button text="x" />
-        <Button text="4" /> <Button text="5" /> <Button text="6" />
-        <Button text="-" />
-        <Button text="1" /> <Button text="2" /> <Button text="3" />
-        <Button text="+" />
-        <Button text="0" /> <Button text="." /> <Button text="ANS" />
-        <Button
-          borderColor="#d59372"
-          backgroundColors={{ darker: "#ffc21a", lighter: "#f6cb55" }}
-          text="="
-        />
+        <AC /> <CE /> <Operation text="/" />
+        <Digit text="7" /> <Digit text="8" /> <Digit text="9" />
+        <Operation text="x" />
+        <Digit text="4" /> <Digit text="5" /> <Digit text="6" />
+        <Operation text="-" />
+        <Digit text="1" /> <Digit text="2" /> <Digit text="3" />
+        <Operation text="+" />
+        <Digit text="0" /> <Digit text="." /> <Digit text="ANS" />
+        <Equals />
       </div>
     </CalculatorContext.Provider>
   );
