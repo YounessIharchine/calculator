@@ -61,6 +61,8 @@
   font-weight: bold;
   color: #33190f;
 
+  user-select: none;
+
   border: 1px solid #d48c70;
   border-right: 5px solid #d48c70;
   border-bottom: 5px solid #d48c70;
