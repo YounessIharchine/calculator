@@ -2,6 +2,12 @@ import { useContext } from "react";
 import CalculatorContext from "../context/calculatorContext";
 
 const Operation = ({ operation }) => {
-  return <div className="button">{operation}</div>;
+  const { addOperation } = useContext(CalculatorContext);
+
+  return (
+    <div className="button" onClick={() => addOperation(operation)}>
+      {operation}
+    </div>
+  );
 };
 export default Operation;

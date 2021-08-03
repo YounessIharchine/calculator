@@ -24,15 +24,41 @@ function App() {
   };
 
   const addDigit = (digit) => {
+    const operations = ["+", "-", "x", "/"];
     setValue((prevValue) => {
-      if (value === "0") return digit;
+      if (prevValue === "0") return digit;
+      if (operations.includes(prevValue[prevValue.length - 2]) && digit === "0")
+        return prevValue;
+      if (
+        operations.includes(prevValue[prevValue.length - 2]) &&
+        prevValue[prevValue.length - 1] === "0"
+      )
+        return prevValue.slice(0, -1) + digit;
       return prevValue + digit;
+    });
+  };
+
+  const addOperation = (operation) => {
+    const operations = ["+", "-", "x", "/"];
+
+    setValue((prevValue) => {
+      if (prevValue === "0" && operation === "-") return operation;
+      if (prevValue === "-" && operation === "+") return "0";
+      if (prevValue === "0" || prevValue === "-") return prevValue;
+
+      const lastChar = prevValue[prevValue.length - 1];
+      if (
+        operations.some((iteratedOperation) => iteratedOperation === lastChar)
+      )
+        return prevValue.slice(0, -1) + operation;
+
+      return prevValue + operation;
     });
   };
 
   return (
     <CalculatorContext.Provider
-      value={{ emptyScreen, removeLastChar, addDigit }}
+      value={{ emptyScreen, removeLastChar, addDigit, addOperation }}
     >
       <div className="wrapper">
         <Screen value={value} />
