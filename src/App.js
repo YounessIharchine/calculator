@@ -1,5 +1,6 @@
 import "./App.css";
-import { useState, createContext } from "react";
+import { useState } from "react";
+import CalculatorContext from "./context/calculatorContext";
 import Screen from "./elements/screen";
 import AC from "./elements/ac";
 import CE from "./elements/ce";
@@ -7,13 +8,15 @@ import Operation from "./elements/operation";
 import Digit from "./elements/digit";
 import Equals from "./elements/equals";
 
-const CalculatorContext = createContext();
-
 function App() {
   const [value, setValue] = useState("aaaaaaaaaaaaaaabbbbbbbbbbBBBBBBBBBBBBBB");
 
+  const emptyScreen = () => {
+    setValue("0");
+  };
+
   return (
-    <CalculatorContext.Provider value={{}}>
+    <CalculatorContext.Provider value={{ emptyScreen }}>
       <div className="wrapper">
         <Screen value={value} />
         <AC /> <CE /> <Operation text="/" />
