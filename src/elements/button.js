@@ -18,13 +18,13 @@ const Button = (props) => {
         gridColumn,
       };
     } else {
-      style = { borderColor };
+      style = { gridColumn };
     }
   } else {
     if (darker) {
       style = {
+        borderColor,
         background: `linear-gradient(${lighter}, ${darker})`,
-        gridColumn,
       };
     }
   }

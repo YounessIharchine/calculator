@@ -27,11 +27,8 @@
   grid-template-columns: repeat(4, 1fr);
 }
 
-.screen {
-  padding: 0 2.33rem;
-
-  font-family: "digital-7.mono";
-  font-size: 36px;
+.screen-wrapper {
+  padding: 0 2.19rem;
 
   border: 1px solid #d48c70;
   border-top: 3px solid #d48c70;
@@ -40,6 +37,18 @@
 
   grid-column: span 4;
   grid-row: span 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.screen {
+  padding: 0;
+  overflow: hidden;
+
+  font-family: "digital-7.mono";
+  font-size: 36px;
 
   display: flex;
   align-items: center;
