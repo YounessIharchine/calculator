@@ -1,36 +1,62 @@
+@font-face {
+  font-family: "Roboto-Regular";
+  src: local("Roboto-Regular"),
+    url(./fonts/Roboto-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "digital-7.mono";
+  src: local("digital-7.mono"),
+    url(./fonts/digital-7.mono.ttf) format("truetype");
+}
+
 .wrapper {
-  height: 80vh;
-  width: 70vw;
+  height: 528px;
+  width: 321px;
   margin: auto;
   padding: 2rem;
+
   border: 1px solid #d48c70;
   border-right: 10px solid #d48c70;
   border-bottom: 10px solid #d48c70;
   border-radius: 10px;
+  box-shadow: 5px 5px 15px 0px #d48c70;
   background: linear-gradient(135deg, #f4ba9f, #f79489);
-  box-shadow: 5px 5px 15px 5px #d48c70;
+
   display: grid;
-  gap: 2rem;
+  gap: 1.33rem;
   grid-template-columns: repeat(4, 1fr);
 }
 
 .screen {
+  padding: 0 2rem;
+
+  font-family: "digital-7.mono";
+  font-size: 36px;
+
   border: 1px solid #d48c70;
-  background-color: #fadcd9;
+  background: linear-gradient(135deg, #fcf5f2, #fadcd9);
+
   grid-column: span 4;
   grid-row: span 2;
+
   display: flex;
   align-items: center;
   justify-content: flex-end;
 }
 
 .button {
+  font-family: "Roboto-Regular";
+  font-size: 18px;
+  font-weight: bold;
+  color: #33190f;
+
   border: 1px solid #d48c70;
   border-right: 5px solid #d48c70;
   border-bottom: 5px solid #d48c70;
   border-radius: 5px;
-  background: linear-gradient(135deg, #f8d8c9, #f8afa6);
   box-shadow: 5px 5px 15px 0px rgba(212, 140, 112, 0.9);
+  background: linear-gradient(135deg, #f8d8c9, #f8afa6);
+
   display: flex;
   align-items: center;
   justify-content: center;
