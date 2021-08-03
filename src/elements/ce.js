@@ -1,4 +1,13 @@
+import { useContext } from "react";
+import CalculatorContext from "../context/calculatorContext";
+
 const CE = () => {
-  return <div className="button">CE</div>;
+  const { removeLastChar } = useContext(CalculatorContext);
+
+  return (
+    <div className="button" onClick={removeLastChar}>
+      CE
+    </div>
+  );
 };
 export default CE;

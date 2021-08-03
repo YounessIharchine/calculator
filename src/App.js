@@ -15,8 +15,16 @@ function App() {
     setValue("0");
   };
 
+  const removeLastChar = () => {
+    setValue((prevValue) => {
+      const value = prevValue.slice(0, -1);
+      if (!value) return "0";
+      return value;
+    });
+  };
+
   return (
-    <CalculatorContext.Provider value={{ emptyScreen }}>
+    <CalculatorContext.Provider value={{ emptyScreen, removeLastChar }}>
       <div className="wrapper">
         <Screen value={value} />
         <AC /> <CE /> <Operation text="/" />
