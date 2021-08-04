@@ -9,7 +9,7 @@ import Digit from "./elements/digit";
 import Equals from "./elements/equals";
 
 function App() {
-  const [value, setValue] = useState("aaaaaaaaaaaaaaabbbbbbbbbbBBBBBBBBBBBBBB");
+  const [value, setValue] = useState("0");
 
   const emptyScreen = () => {
     setValue("0");
@@ -51,14 +51,36 @@ function App() {
         operations.some((iteratedOperation) => iteratedOperation === lastChar)
       )
         return prevValue.slice(0, -1) + operation;
-
+      if (
+        operations.some((iteratedOperation) =>
+          prevValue.includes(iteratedOperation)
+        )
+      )
+        return calculate(prevValue) + operation;
       return prevValue + operation;
     });
   };
 
+  const equals = () => {
+    const operations = ["+", "-", "x", "/"];
+
+    setValue((prevValue) => {
+      const lastChar = prevValue[prevValue.length - 1];
+      if (
+        operations.some((iteratedOperation) => iteratedOperation === lastChar)
+      )
+        return prevValue;
+      return calculate(prevValue);
+    });
+  };
+
+  const calculate = (prevValue) => {
+    return eval(prevValue.replace("x", "*")).toString();
+  };
+
   return (
     <CalculatorContext.Provider
-      value={{ emptyScreen, removeLastChar, addDigit, addOperation }}
+      value={{ emptyScreen, removeLastChar, addDigit, addOperation, equals }}
     >
       <div className="wrapper">
         <Screen value={value} />
