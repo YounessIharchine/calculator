@@ -18,7 +18,9 @@ function App() {
   const removeLastChar = () => {
     setValue((prevValue) => {
       const value = prevValue.slice(0, -1);
+
       if (!value) return "0";
+
       return value;
     });
   };
@@ -27,13 +29,15 @@ function App() {
     const operations = ["+", "-", "x", "/"];
     setValue((prevValue) => {
       if (prevValue === "0") return digit;
-      if (operations.includes(prevValue[prevValue.length - 2]) && digit === "0")
-        return prevValue;
-      if (
-        operations.includes(prevValue[prevValue.length - 2]) &&
-        prevValue[prevValue.length - 1] === "0"
-      )
-        return prevValue.slice(0, -1) + digit;
+
+      const lastChar = prevValue[prevValue.length - 1];
+      const beforeLastChar = prevValue[prevValue.length - 2];
+
+      if (operations.includes(beforeLastChar) && lastChar === "0") {
+        if (digit === "0") return prevValue;
+        else return prevValue.slice(0, -1) + digit;
+      }
+
       return prevValue + digit;
     });
   };
@@ -51,12 +55,14 @@ function App() {
         operations.some((iteratedOperation) => iteratedOperation === lastChar)
       )
         return prevValue.slice(0, -1) + operation;
+
       if (
         operations.some((iteratedOperation) =>
           prevValue.includes(iteratedOperation)
         )
       )
         return calculate(prevValue) + operation;
+
       return prevValue + operation;
     });
   };
@@ -70,6 +76,7 @@ function App() {
         operations.some((iteratedOperation) => iteratedOperation === lastChar)
       )
         return prevValue;
+
       return calculate(prevValue);
     });
   };
