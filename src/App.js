@@ -6,10 +6,12 @@ import AC from "./elements/ac";
 import CE from "./elements/ce";
 import Operation from "./elements/operation";
 import Digit from "./elements/digit";
+import Point from "./elements/point";
 import Equals from "./elements/equals";
 
 function App() {
   const [value, setValue] = useState("0");
+  const operations = ["+", "-", "x", "/"];
 
   const emptyScreen = () => {
     setValue("0");
@@ -26,19 +28,48 @@ function App() {
   };
 
   const addDigit = (digit) => {
-    const operations = ["+", "-", "x", "/"];
     setValue((prevValue) => {
       if (prevValue === "0") return digit;
 
       const lastChar = prevValue[prevValue.length - 1];
       const beforeLastChar = prevValue[prevValue.length - 2];
 
+      //when a 0 is after an operation
       if (operations.includes(beforeLastChar) && lastChar === "0") {
         if (digit === "0") return prevValue;
         else return prevValue.slice(0, -1) + digit;
       }
 
       return prevValue + digit;
+    });
+  };
+
+  const addPoint = () => {
+    setValue((prevValue) => {
+      const lastChar = prevValue[prevValue.length - 1];
+
+      if (lastChar === "0") return prevValue + ".";
+      if (
+        operations.some((iteratedOperation) => iteratedOperation === lastChar)
+      )
+        return prevValue + "0.";
+      if (
+        prevValue.split(".").length - 1 === 1 &&
+        !operations.some((iteratedOperation) =>
+          prevValue.includes(iteratedOperation)
+        )
+      )
+        return prevValue;
+
+      if (
+        prevValue.split(".").length - 1 === 2 &&
+        operations.some((iteratedOperation) =>
+          prevValue.includes(iteratedOperation)
+        )
+      )
+        return prevValue;
+
+      return prevValue + ".";
     });
   };
 
@@ -51,6 +82,9 @@ function App() {
       if (prevValue === "0" || prevValue === "-") return prevValue;
 
       const lastChar = prevValue[prevValue.length - 1];
+
+      if (lastChar === ".") return prevValue.slice(0, -1) + operation;
+
       if (
         operations.some((iteratedOperation) => iteratedOperation === lastChar)
       )
@@ -87,7 +121,14 @@ function App() {
 
   return (
     <CalculatorContext.Provider
-      value={{ emptyScreen, removeLastChar, addDigit, addOperation, equals }}
+      value={{
+        emptyScreen,
+        removeLastChar,
+        addDigit,
+        addPoint,
+        addOperation,
+        equals,
+      }}
     >
       <div className="wrapper">
         <Screen value={value} />
@@ -98,7 +139,7 @@ function App() {
         <Operation operation="-" />
         <Digit digit="1" /> <Digit digit="2" /> <Digit digit="3" />
         <Operation operation="+" />
-        <Digit digit="0" /> <Digit digit="." />
+        <Digit digit="0" /> <Point />
         <Equals />
       </div>
     </CalculatorContext.Provider>
