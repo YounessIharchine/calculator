@@ -11,6 +11,7 @@ import Equals from "./elements/equals";
 
 function App() {
   const [value, setValue] = useState("0");
+  const [didJustPushEqual, setJustPushEqual] = useState(false);
   const operations = ["+", "-", "x", "/"];
 
   const emptyScreen = () => {
@@ -29,6 +30,10 @@ function App() {
 
   const addDigit = (digit) => {
     setValue((prevValue) => {
+      if (didJustPushEqual) {
+        setJustPushEqual(false);
+        return digit;
+      }
       if (prevValue === "0") return digit;
 
       const lastChar = prevValue[prevValue.length - 1];
@@ -47,6 +52,10 @@ function App() {
   const addPoint = () => {
     setValue((prevValue) => {
       const lastChar = prevValue[prevValue.length - 1];
+
+      if (didJustPushEqual) {
+        setJustPushEqual(false);
+      }
 
       if (lastChar === "0") return prevValue + ".";
       if (
@@ -75,6 +84,10 @@ function App() {
 
   const addOperation = (operation) => {
     const operations = ["+", "-", "x", "/"];
+
+    if (didJustPushEqual) {
+      setJustPushEqual(false);
+    }
 
     setValue((prevValue) => {
       if (prevValue === "0" && operation === "-") return operation;
@@ -111,6 +124,7 @@ function App() {
       )
         return prevValue;
 
+      setJustPushEqual(true);
       return calculate(prevValue);
     });
   };
