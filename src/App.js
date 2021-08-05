@@ -116,7 +116,7 @@ function App() {
   };
 
   const calculate = (prevValue) => {
-    return eval(prevValue.replace("x", "*")).toString();
+    return parseFloat(eval(prevValue.replace("x", "*")).toFixed(4)).toString();
   };
 
   return (
